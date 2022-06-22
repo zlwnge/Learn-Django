@@ -1,0 +1,35 @@
+[阿里云](https://cn.aliyun.com/) 
+### 创建工作用户`zlwnge`，并赋予`sudo`权限
+打开终端，登录到服务器：
+```
+sss root@公网ip
+```
+创建`zlwnge`用户：
+```
+adduser zlwnge # 创建用户zlwnge usermod -aG sudo acs # 给用户acs分配sudo权限
+```
+### 配置别名：
+```
+cd .ssh/
+vim config
+```
+在配置文件中输入：
+```
+Host (别名)
+  HostName (公网ip)
+  User (用户名)
+```
+然后按`esc`进入`vim`命令行模式，输入`：wq`保存并退出`vim`。
+
+### 配置工作环境
+```
+scp .bashrc .vimrc .tmux.conf (别名):
+```
+### 安装`tmux`和`docker`
+登录到服务器（`ssh zlwnge@公网ip`），然后安装`tmux`：
+```
+sudo apt-get update
+sudo apt-get install tmux
+```
+打开`tmux`。（养成好习惯，所有工作都在`tmux`里进行，防止意外关闭终端后，工作进度丢失）
+然后在`tmux`中根据[docker安装教程](https://docs.docker.com/engine/install/ubuntu/)安装`docker`即可。
